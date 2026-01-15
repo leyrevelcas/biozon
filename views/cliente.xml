@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    
+    <!-- VISTA TREE (LISTA)-->
+   
+  
+    <record model="ir.ui.view" id="biozon.client_list">
+      <field name="name">biozon client list</field>
+      <field name="model">biozon.client</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="email"/>
+          <field name="phone"/>
+          <field name="order_count"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+    
+    <!-- VISTA FORM (FORMULARIO-->
+  
+    
+    <record model="ir.ui.view" id="biozon.client_form">
+      <field name="name">biozon client form</field>
+      <field name="model">biozon.client</field>
+      <field name="arch" type="xml">
+        <form>
+
+          <!-- Datos principales del cliente -->
+          <group>
+            <field name="name"/>
+            <field name="address"/>
+            <field name="email"/>
+            <field name="phone"/>
+            <field name="order_count" readonly="1"/>
+          </group>
+
+          <!-- Pedidos asociados -->
+          <group>
+            <field name="orders"/>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+
+
+   
+    <!-- VISTA KANBAN (CON BOOTSTRAP Y COLORES -->
+    
+    
+    <record model="ir.ui.view" id="biozon.client_kanban">
+      <field name="name">biozon client kanban</field>
+      <field name="model">biozon.client</field>
+
+      <field name="arch" type="xml">
+        <kanban>
+
+          <!-- Campos cargados en el kanban -->
+          <field name="name"/>
+          <field name="email"/>
+          <field name="phone"/>
+          <field name="order_count"/>
+
+          <templates>
+
+            <!-- Plantilla de cada tarjeta -->
+            <t t-name="kanban-box">
+
+              <!-- Contenedor principal con Bootstrap -->
+              <div class="oe_kanban_global_click card shadow p-3 mb-3"
+                   style="border-left: 6px solid #0d6efd; border-radius: 10px; background-color: #f8f9fa;">
+
+                <!-- Nombre del cliente -->
+                <h4 class="text-primary fw-bold mb-2">
+                  <field name="name"/>
+                </h4>
+
+                <!-- Email -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Correo:</strong>
+                  <field name="email"/>
+                </p>
+
+                <!-- Teléfono -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Teléfono:</strong>
+                  <field name="phone"/>
+                </p>
+
+                <!-- Número de pedidos -->
+                <p class="badge bg-info text-dark mt-2">
+                  Pedidos: <field name="order_count"/>
+                </p>
+
+              </div>
+            </t>
+
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+
+    
+    <!-- ACCIÓN DEL MENÚ-->
+    
+    
+    <record model="ir.actions.act_window" id="biozon.action_client_window">
+      <field name="name">Clientes</field>
+      <field name="res_model">biozon.client</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

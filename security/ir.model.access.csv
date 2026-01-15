@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_biozon_category,biozon.category,model_biozon_category,base.group_user,1,1,1,1
+access_biozon_product,biozon.product,model_biozon_product,base.group_user,1,1,1,1
+access_biozon_supplier,biozon.supplier,model_biozon_supplier,base.group_user,1,1,1,1
+access_biozon_client,biozon.client,model_biozon_client,base.group_user,1,1,1,1
+access_biozon_order,biozon.order,model_biozon_order,base.group_user,1,1,1,1
+access_biozon_shipment,biozon.shipment,model_biozon_shipment,base.group_user,1,1,1,1
+

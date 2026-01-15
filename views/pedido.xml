@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- ========================================================= -->
+    <!-- VISTA TREE (LISTA)                                        -->
+    <!-- Muestra los pedidos en formato tabla                      -->
+    <!-- ========================================================= -->
+    <record model="ir.ui.view" id="biozon.order_list">
+      <field name="name">biozon order list</field>
+      <field name="model">biozon.order</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date_order"/>
+          <field name="client"/>
+          <field name="product_count"/>
+          <field name="total_amount"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+    <!-- ========================================================= -->
+    <!-- VISTA FORM (FORMULARIO)                                   -->
+    <!-- Para crear y editar pedidos                               -->
+    <!-- ========================================================= -->
+    <record model="ir.ui.view" id="biozon.order_form">
+      <field name="name">biozon order form</field>
+      <field name="model">biozon.order</field>
+      <field name="arch" type="xml">
+        <form>
+
+          <!-- Datos principales del pedido -->
+          <group>
+            <field name="date_order"/>
+            <field name="client"/>
+            <field name="state"/>
+            <field name="product_count" readonly="1"/>
+            <field name="total_amount" readonly="1"/>
+          </group>
+
+          <!-- Productos incluidos -->
+          <group>
+            <field name="products"/>
+          </group>
+
+          <!-- Envío asociado -->
+          <group>
+            <field name="shipment"/>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+
+
+    <!-- ========================================================= -->
+    <!-- VISTA KANBAN (CON BOOTSTRAP Y COLORES POR ESTADO)         -->
+    <!-- Tarjetas visuales modernas para pedidos                   -->
+    <!-- ========================================================= -->
+    <record model="ir.ui.view" id="biozon.order_kanban">
+      <field name="name">biozon order kanban</field>
+      <field name="model">biozon.order</field>
+
+      <field name="arch" type="xml">
+        <kanban>
+
+          <!-- Campos cargados en el kanban -->
+          <field name="date_order"/>
+          <field name="client"/>
+          <field name="product_count"/>
+          <field name="total_amount"/>
+          <field name="state"/>
+
+          <templates>
+
+            <!-- Plantilla de cada tarjeta -->
+            <t t-name="kanban-box">
+
+              <!-- Contenedor principal con Bootstrap -->
+              <div class="oe_kanban_global_click card shadow p-3 mb-3"
+                   style="border-radius: 10px; background-color: #f8f9fa;">
+
+                <!-- Título del pedido -->
+                <h4 class="fw-bold text-primary mb-2">
+                  Pedido
+                </h4>
+
+                <!-- Fecha -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Fecha:</strong>
+                  <field name="date_order"/>
+                </p>
+
+                <!-- Cliente -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Cliente:</strong>
+                  <field name="client"/>
+                </p>
+
+                <!-- Número de productos -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Productos:</strong>
+                  <field name="product_count"/>
+                </p>
+
+                <!-- Total -->
+                <p class="mb-1">
+                  <strong class="text-secondary">Total:</strong>
+                  <field name="total_amount"/>
+                </p>
+
+                <!-- Estado con colores -->
+                <t t-if="record.state.raw_value == 'draft'">
+                  <p class="badge bg-secondary mt-2">Borrador</p>
+                </t>
+
+                <t t-if="record.state.raw_value == 'confirmed'">
+                  <p class="badge bg-primary mt-2">Confirmado</p>
+                </t>
+
+                <t t-if="record.state.raw_value == 'shipped'">
+                  <p class="badge bg-warning text-dark mt-2">Enviado</p>
+                </t>
+
+                <t t-if="record.state.raw_value == 'cancelled'">
+                  <p class="badge bg-danger mt-2">Cancelado</p>
+                </t>
+
+              </div>
+            </t>
+
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+
+    <!-- ========================================================= -->
+    <!-- ACCIÓN DEL MENÚ                                           -->
+    <!-- Permite abrir pedidos desde el menú principal             -->
+    <!-- ========================================================= -->
+    <record model="ir.actions.act_window" id="biozon.action_order_window">
+      <field name="name">Pedidos</field>
+      <field name="res_model">biozon.order</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+  </data>
+</odoo>

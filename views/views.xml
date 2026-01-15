@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="biozon.list">
+      <field name="name">biozon list</field>
+      <field name="model">biozon.biozon</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="biozon.action_window">
+      <field name="name">biozon window</field>
+      <field name="res_model">biozon.biozon</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="biozon.action_server">
+      <field name="name">biozon server</field>
+      <field name="model_id" ref="model_biozon_biozon"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="biozon" id="biozon.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="biozon.menu_1" parent="biozon.menu_root"/>
+    <menuitem name="Menu 2" id="biozon.menu_2" parent="biozon.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="biozon.menu_1_list" parent="biozon.menu_1"
+              action="biozon.action_window"/>
+    <menuitem name="Server to list" id="biozon" parent="biozon.menu_2"
+              action="biozon.action_server"/>
+-->
+  </data>
+</odoo>

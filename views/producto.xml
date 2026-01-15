@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+   
+    <!-- VISTA TREE (LISTA)-->
+    
+    
+    <record id="biozon.product_list" model="ir.ui.view">
+      <field name="name">biozon product list</field>
+      <field name="model">biozon.product</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Campos principales del producto -->
+          <field name="name"/>
+          <field name="internal_code"/>
+          <field name="price"/>
+          <field name="stock"/>
+          <field name="category"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+    
+    <!-- VISTA FORM (FORMULARIO) -->
+    
+    <record id="biozon.product_form" model="ir.ui.view">
+      <field name="name">biozon product form</field>
+      <field name="model">biozon.product</field>
+      <field name="arch" type="xml">
+        <form>
+
+          <!-- Grupo principal con los datos del producto -->
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="price"/>
+            <field name="stock"/>
+            <field name="is_vegan"/>
+            <field name="category"/>
+            <field name="image" widget="image"/>
+          </group>
+
+          <!-- Grupo secundario con los proveedores -->
+          <group>
+            <field name="suppliers"/>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+
+
+
+    <!-- HERENCIA DE VISTA -->
+    
+
+    <record id="biozon.product_form_inherit" model="ir.ui.view">
+      <field name="name">biozon.product.form.inherit</field>
+      <field name="model">biozon.product</field>
+
+      <!-- Heredamos la vista original -->
+      <field name="inherit_id" ref="biozon.product_form"/>
+
+      <field name="arch" type="xml">
+        <!-- Insertamos el campo después del nombre -->
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="internal_code"/>
+        </xpath>
+      </field>
+    </record>
+
+
+
+    
+    <!-- VISTA KANBAN (CON BOOTSTRAP) -->
+    
+   
+    <record id="biozon.product_kanban" model="ir.ui.view">
+      <field name="name">biozon product kanban</field>
+      <field name="model">biozon.product</field>
+
+      <field name="arch" type="xml">
+        <kanban>
+
+          <!-- Campos cargados en el kanban -->
+          <field name="name"/>
+          <field name="internal_code"/>
+          <field name="price"/>
+          <field name="stock"/>
+          <field name="is_vegan"/>
+          <field name="category"/>
+          <field name="low_stock"/>
+          <field name="image"/>
+
+          <templates>
+
+            <!-- Plantilla de cada tarjeta del kanban -->
+            <t t-name="kanban-box">
+
+              <!-- Contenedor principal con Bootstrap -->
+              <div class="oe_kanban_global_click card shadow-sm p-3 mb-2"
+                   style="border-radius: 10px; background-color: #f8f9fa;">
+
+                <!-- Imagen del producto -->
+                <div class="text-center mb-2">
+                  <img t-if="record.image.raw_value"
+                       t-att-src="record.image"
+                       class="img-fluid rounded"
+                       style="max-height: 120px;"/>
+                </div>
+
+                <!-- Nombre del producto -->
+                <h4 class="text-primary fw-bold">
+                  <field name="name"/>
+                </h4>
+
+                <!-- Código interno -->
+                <p class="mb-1">
+                  <strong>Código interno:</strong>
+                  <field name="internal_code"/>
+                </p>
+
+                <!-- Precio -->
+                <p class="mb-1">
+                  <strong>Precio:</strong>
+                  <field name="price"/>
+                </p>
+
+                <!-- Stock -->
+                <p class="mb-1">
+                  <strong>Stock:</strong>
+                  <field name="stock"/>
+                </p>
+
+                <!-- Categoría -->
+                <p class="mb-1">
+                  <strong>Categoría:</strong>
+                  <field name="category"/>
+                </p>
+
+                <!-- Etiqueta si es vegano -->
+                <p t-if="record.is_vegan.raw_value"
+                   class="badge bg-success">
+                  Vegano
+                </p>
+
+                <!-- Etiqueta si el stock es bajo -->
+                <p t-if="record.low_stock.raw_value"
+                   class="badge bg-danger">
+                  Stock bajo
+                </p>
+
+              </div>
+            </t>
+
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+
+    
+    <!-- ACCIÓN DEL MENÚ-->
+   
+    
+    <record id="biozon.action_product_window" model="ir.actions.act_window">
+      <field name="name">Productos</field>
+      <field name="res_model">biozon.product</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+  </data>
+</odoo>
+

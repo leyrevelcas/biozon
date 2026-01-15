@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- MENÚ RAÍZ -->
+    <menuitem name="Biozon" id="biozon.menu_root"/>
+
+    <!-- SEGUNDO NIVEL -->
+    <!--<menuitem name="Gestión" id="biozon.menu_1" parent="biozon.menu_root"/> -->
+
+    <!-- MENÚS DE CADA MODELO!!! al final lo dejo asi para q se vea en el principal-->
+    <menuitem name="Categorías"
+              id="biozon.menu_category_list"
+              parent="biozon.menu_root"
+              action="biozon.action_category_window"/>
+
+    <menuitem name="Productos"
+              id="biozon.menu_product_list"
+              parent="biozon.menu_root"
+              action="biozon.action_product_window"/>
+
+    <menuitem name="Clientes"
+              id="biozon.menu_client_list"
+              parent="biozon.menu_root"
+              action="biozon.action_client_window"/>
+
+    <menuitem name="Pedidos"
+              id="biozon.menu_order_list"
+              parent="biozon.menu_root"
+              action="biozon.action_order_window"/>
+
+    <menuitem name="Proveedores"
+              id="biozon.menu_supplier_list"
+              parent="biozon.menu_root"
+              action="biozon.action_supplier_window"/>
+
+    <menuitem name="Envíos"
+              id="biozon.menu_shipment_list"
+              parent="biozon.menu_root"
+              action="biozon.action_shipment_window"/>
+
+  </data>
+</odoo>
+

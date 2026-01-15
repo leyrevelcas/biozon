@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- VISTA LISTA -->
+    <record model="ir.ui.view" id="biozon.shipment_list">
+      <field name="name">biozon shipment list</field>
+      <field name="model">biozon.shipment</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date_shipped"/>
+          <field name="state"/>
+          <field name="order"/>
+          <field name="client"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- VISTA FORMULARIO -->
+    <record model="ir.ui.view" id="biozon.shipment_form">
+      <field name="name">biozon shipment form</field>
+      <field name="model">biozon.shipment</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="order"/>
+            <field name="client" readonly="1"/>
+            <field name="date_shipped"/>
+            <field name="state"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- VISTA KANBAN -->
+    <record model="ir.ui.view" id="biozon.shipment_kanban">
+      <field name="name">biozon shipment kanban</field>
+      <field name="model">biozon.shipment</field>
+      <field name="arch" type="xml">
+        <kanban>
+
+          <field name="date_shipped"/>
+          <field name="state"/>
+          <field name="order"/>
+          <field name="client"/>
+
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+
+                <div>
+                  <strong>Pedido:</strong>
+                  <field name="order"/>
+                </div>
+
+                <div>
+                  <span>Cliente: </span>
+                  <field name="client"/>
+                </div>
+
+                <div>
+                  <span>Estado: </span>
+                  <field name="state"/>
+                </div>
+
+                <div>
+                  <span>Fecha envío: </span>
+                  <field name="date_shipped"/>
+                </div>
+
+              </div>
+            </t>
+          </templates>
+
+        </kanban>
+      </field>
+    </record>
+
+    <!-- ACCIÓN -->
+    <record model="ir.actions.act_window" id="biozon.action_shipment_window">
+      <field name="name">Envíos</field>
+      <field name="res_model">biozon.shipment</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+    
+
+  </data>
+</odoo>
+
+
+
