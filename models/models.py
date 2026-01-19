@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
-# ============================================================
+
 # MODELOS PRINCIPALES DEL MÓDULO BIOZON
 # Incluye: Categoría, Producto, Proveedor, Cliente, Pedido, Envío
 # + Herencia y método ORM explícito
-# ============================================================
+
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import re   # Módulo para validar correos con expresiones regulares
 
 
-# ============================================================
 # CATEGORÍA
-# ============================================================
 class Category(models.Model):
     _name = 'biozon.category'
     _description = 'Categoría de productos'
@@ -42,15 +40,15 @@ class Category(models.Model):
 
 
 
-# ============================================================
+
 # PRODUCTO
-# ============================================================
 class Product(models.Model):
     _name = 'biozon.product'
     _description = 'Producto'
 
     # Campos principales
     name = fields.Char(string="Nombre")
+    internal_code = fields.Char(string="Código interno")
     description = fields.Text(string="Descripción")
     price = fields.Float(string="Precio")
     stock = fields.Integer(string="Stock")
@@ -80,19 +78,19 @@ class Product(models.Model):
         for product in self:
             product.low_stock = product.stock is not False and product.stock < 10
 
-    # ------------------------------------------------------------
+   
     # CONSTRAINT: Validación del precio
-    # ------------------------------------------------------------
+    # -----------------------------------
     @api.constrains('price')
     def _check_price(self):
         for product in self:
             if product.price < 0:
                 raise ValidationError("El precio no puede ser negativo.")
 
-    # ------------------------------------------------------------
-    # MÉTODO ORM EXPLÍCITO (OBLIGATORIO PARA EL PROYECTO)
+    
+    # MÉTODO ORM EXPLÍCITO 
     # Usa search() y write()
-    # ------------------------------------------------------------
+    
     def update_low_stock_products(self):
         """
         Busca todos los productos cuyo stock es menor a 10
@@ -105,9 +103,9 @@ class Product(models.Model):
 
 
 
-# ============================================================
+
 # PROVEEDOR
-# ============================================================
+
 class Supplier(models.Model):
     _name = 'biozon.supplier'
     _description = 'Proveedor'
@@ -140,9 +138,7 @@ class Supplier(models.Model):
 
 
 
-# ============================================================
 # CLIENTE
-# ============================================================
 class Client(models.Model):
     _name = 'biozon.client'
     _description = 'Cliente'
@@ -172,9 +168,8 @@ class Client(models.Model):
         for client in self:
             client.order_count = len(client.orders)
 
-    # ------------------------------------------------------------
+ 
     # VALIDACIONES (CONSTRAINTS)
-    # ------------------------------------------------------------
     @api.constrains('email')
     def _check_email(self):
         for record in self:
@@ -202,9 +197,8 @@ class Client(models.Model):
 
 
 
-# ============================================================
+
 # PEDIDO
-# ============================================================
 class Order(models.Model):
     _name = 'biozon.order'
     _description = 'Pedido'
@@ -265,9 +259,8 @@ class Order(models.Model):
 
 
 
-# ============================================================
+
 # ENVÍO
-# ============================================================
 class Shipment(models.Model):
     _name = 'biozon.shipment'
     _description = 'Envío'
@@ -297,9 +290,8 @@ class Shipment(models.Model):
 
 
 
-# ============================================================
+
 # HERENCIA DEL MODELO PRODUCTO
-# ============================================================
 class ProductInherit(models.Model):
     _inherit = 'biozon.product'
 
