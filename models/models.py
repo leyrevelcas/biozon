@@ -71,7 +71,11 @@ class Product(models.Model):
         store=True
     )
 
-    image = fields.Image(string="Imagen")
+    image = fields.Image(
+        string="Imagen",
+        max_width=800,
+        max_height=600
+    )
 
     @api.depends('stock')
     def _compute_low_stock(self):

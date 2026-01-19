@@ -2,10 +2,10 @@
 <odoo>
   <data>
 
-    <!-- ========================================================= -->
-    <!-- VISTA TREE (LISTA)                                        -->
-    <!-- Muestra los pedidos en formato tabla                      -->
-    <!-- ========================================================= -->
+    
+    <!-- VISTA TREE (LIST-->
+    <!-- Muestra los pedidos en formato tabl-->
+  
     <record model="ir.ui.view" id="biozon.order_list">
       <field name="name">biozon order list</field>
       <field name="model">biozon.order</field>
@@ -22,10 +22,10 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- VISTA FORM (FORMULARIO)                                   -->
-    <!-- Para crear y editar pedidos                               -->
-    <!-- ========================================================= -->
+   
+    <!-- VISTA FORM (FORMULARIO)-->
+    <!-- Para crear y editar pedidos-->
+  
     <record model="ir.ui.view" id="biozon.order_form">
       <field name="name">biozon order form</field>
       <field name="model">biozon.order</field>
@@ -57,10 +57,10 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- VISTA KANBAN (CON BOOTSTRAP Y COLORES POR ESTADO)         -->
-    <!-- Tarjetas visuales modernas para pedidos                   -->
-    <!-- ========================================================= -->
+   
+    <!-- VISTA KANBAN (CON BOOTSTRAP Y COLORES POR ESTADO)-->
+    
+    
     <record model="ir.ui.view" id="biozon.order_kanban">
       <field name="name">biozon order kanban</field>
       <field name="model">biozon.order</field>
@@ -140,10 +140,10 @@
 
 
 
-    <!-- ========================================================= -->
-    <!-- ACCIÓN DEL MENÚ                                           -->
-    <!-- Permite abrir pedidos desde el menú principal             -->
-    <!-- ========================================================= -->
+    
+    <!-- ACCIÓN DEL MENÚ -->
+    <!-- Permite abrir pedidos desde el menú principal-->
+    
     <record model="ir.actions.act_window" id="biozon.action_order_window">
       <field name="name">Pedidos</field>
       <field name="res_model">biozon.order</field>
