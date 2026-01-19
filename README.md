@@ -19,5 +19,5 @@ Incluye:<br>
 <br>
 La estructura del módulo está pensada para que sea fácil de mantener y ampliar en el futuro, permitiendo añadir nuevas funciones sin complicar el código.
 <br>
-[](file:///C:/Users/leyre/OneDrive%20-%20Educacyl/DAM2/SGE/VelascoCasadoLeyreMemoriaBiozon.pdf)
+[enlace a la memoria del proyecto](https://github.com/leyrevelcas/biozon/blob/main/MemoriBiozonLeyreVelasco.pdf)
 ----
